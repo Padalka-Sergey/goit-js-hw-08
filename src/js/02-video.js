@@ -15,20 +15,23 @@ player.getVideoTitle().then(function (title) {
   console.log('title:', title);
 });
 
-player.on(
-  'timeupdate',
-  throttle(function (data) {
-    localStorage.setItem(TIME_KEY, JSON.stringify(data));
-  }, 1000)
-);
+player.on('timeupdate', throttle(followEvent, 1000));
+
+function followEvent(data) {
+  localStorage.setItem(TIME_KEY, JSON.stringify(data));
+}
 
 const time = localStorage.getItem(TIME_KEY);
 const timeSec = JSON.parse(time);
-// console.log(time);
-// console.log(timeSec.seconds);
 
-player
-  .setCurrentTime(timeSec.seconds)
+// function startCurrentTime() {
+//   player.setCurrentTime(timeSec.seconds);
+// }
+// startCurrentTime();
+
+const currentTime = player.setCurrentTime(timeSec.seconds);
+
+currentTime
   .then(function (seconds) {
     // seconds = the actual time that the player seeked to
     console.log(seconds);

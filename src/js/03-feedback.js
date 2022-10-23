@@ -31,7 +31,36 @@ function populateArea() {
   const savedText = localStorage.getItem(FEEDBACK_KEY);
   const parseText = JSON.parse(savedText);
   if (savedText) {
-    refs.emailArea.value = parseText.email;
-    refs.messageArea.value = parseText.message;
+    if (parseText.email) {
+      refs.emailArea.value = parseText.email;
+    }
+    if (parseText.message) {
+      refs.messageArea.value = parseText.message;
+    }
   }
 }
+
+// function populateArea() {
+//   const savedText = localStorage.getItem(FEEDBACK_KEY);
+//   let parseText = JSON.parse(savedText);
+//   console.log(parseText);
+//   if (savedText) {
+//     refs.emailArea.value = parseText.email;
+//     if (!parseText.email) {
+//       refs.emailArea.value = '';
+//       parseText.email = '';
+
+//       let jsonText = JSON.stringify(parseText);
+//       console.log(jsonText);
+//       localStorage.setItem(FEEDBACK_KEY, jsonText);
+//     }
+//     refs.messageArea.value = parseText.message;
+//     if (!parseText.message) {
+//       refs.messageArea.value = '';
+//       parseText.message = '';
+//       let jsonText = JSON.stringify(parseText);
+//       console.log(jsonText);
+//       localStorage.setItem(FEEDBACK_KEY, jsonText);
+//     }
+//   }
+// }
