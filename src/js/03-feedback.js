@@ -1,5 +1,5 @@
 import throttle from 'lodash.throttle';
-const formData = {};
+let formData = {};
 
 const FEEDBACK_KEY = 'feedback-form-state';
 
@@ -27,40 +27,33 @@ function onFormInput(evt) {
   localStorage.setItem(FEEDBACK_KEY, JSON.stringify(formData));
 }
 
-function populateArea() {
-  const savedText = localStorage.getItem(FEEDBACK_KEY);
-  const parseText = JSON.parse(savedText);
-  if (savedText) {
-    if (parseText.email) {
-      refs.emailArea.value = parseText.email;
-    }
-    if (parseText.message) {
-      refs.messageArea.value = parseText.message;
-    }
-  }
-}
-
 // function populateArea() {
 //   const savedText = localStorage.getItem(FEEDBACK_KEY);
-//   let parseText = JSON.parse(savedText);
-//   console.log(parseText);
+//   const parseText = JSON.parse(savedText);
+//   // console.log(evt.target.value);
 //   if (savedText) {
-//     refs.emailArea.value = parseText.email;
-//     if (!parseText.email) {
-//       refs.emailArea.value = '';
-//       parseText.email = '';
-
-//       let jsonText = JSON.stringify(parseText);
-//       console.log(jsonText);
-//       localStorage.setItem(FEEDBACK_KEY, jsonText);
+//     if (parseText.email) {
+//       refs.emailArea.value = parseText.email;
 //     }
-//     refs.messageArea.value = parseText.message;
-//     if (!parseText.message) {
-//       refs.messageArea.value = '';
-//       parseText.message = '';
-//       let jsonText = JSON.stringify(parseText);
-//       console.log(jsonText);
-//       localStorage.setItem(FEEDBACK_KEY, jsonText);
+//     if (parseText.message) {
+//       refs.messageArea.value = parseText.message;
 //     }
 //   }
 // }
+
+function populateArea() {
+  const savedText = localStorage.getItem(FEEDBACK_KEY);
+  let parseText = JSON.parse(savedText);
+  // console.log(parseText);
+  if (savedText) {
+    formData = parseText;
+    refs.emailArea.value = formData.email;
+    if (!parseText.email) {
+      refs.emailArea.value = '';
+    }
+    refs.messageArea.value = formData.message;
+    if (!parseText.message) {
+      refs.messageArea.value = '';
+    }
+  }
+}
