@@ -27,20 +27,6 @@ function onFormInput(evt) {
   localStorage.setItem(FEEDBACK_KEY, JSON.stringify(formData));
 }
 
-// function populateArea() {
-//   const savedText = localStorage.getItem(FEEDBACK_KEY);
-//   const parseText = JSON.parse(savedText);
-//   // console.log(evt.target.value);
-//   if (savedText) {
-//     if (parseText.email) {
-//       refs.emailArea.value = parseText.email;
-//     }
-//     if (parseText.message) {
-//       refs.messageArea.value = parseText.message;
-//     }
-//   }
-// }
-
 function populateArea() {
   const savedText = localStorage.getItem(FEEDBACK_KEY);
   let parseText = JSON.parse(savedText);
@@ -57,3 +43,13 @@ function populateArea() {
     }
   }
 }
+
+// function populateArea() {
+//   formData = JSON.parse(localStorage.getItem(FEEDBACK_KEY));
+//   // console.log(parseText);
+//   if (formData) {
+//     refs.emailArea.value = formData.email ?? '';
+
+//     refs.messageArea.value = formData.message ?? '';
+//   }
+// }
